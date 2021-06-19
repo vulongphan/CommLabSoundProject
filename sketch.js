@@ -1,5 +1,9 @@
+var canvasWidth = 400;
+var canvasHeight = 400;
+
 function setup() {
-  createCanvas(400, 400);
+  var canvas = createCanvas(canvasWidth, canvasHeight);
+  canvas.parent('canvas');
 }
 
 var points = [];
@@ -7,7 +11,7 @@ var top_left_x = 100,
   top_left_y = 100;
 var player_x = top_left_x,
   player_y = top_left_y;
-var player_size = 25;
+var player_size = 35;
 var cells_num = 3;
 var cell_width = 100,
   step = 100;
@@ -41,12 +45,16 @@ for (let i = 0; i < cells_num; i++) {
 console.log(points);
 
 function draw() {
-  background(220);
+  background(0);
   for (let i = 0; i < points.length; i++) {
     let x = points[i][0];
     let y = points[i][1];
-    if (visited.some(pos => pos.x === x && pos.y === y)) stroke("red");
-    else noStroke();
+    if (visited.some(pos => pos.x === x && pos.y === y)) {
+      fill('red');
+    }
+    else {
+      noFill();
+    }
     ellipse(x, y, point_size, point_size);
   }
   stroke("purple");

@@ -88,6 +88,11 @@ body {
     opacity: 0;
 }
 
+#canvas {
+    opacity: 0;
+    
+}
+
 .fade {
     opacity: 0;
 }
@@ -95,3 +100,4 @@ body {
 .reveal {
     opacity: 1;
 }
+
