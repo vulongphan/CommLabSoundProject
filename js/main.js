@@ -19,19 +19,21 @@ var point_size = 20;
 var visited = [{ x: player_x, y: player_y }];
 
 // positions of 9 locations
-// var locations = {
-//   0_0: 'The Hill',
-//   0_1: 'The Camp',
-//   0_2: 'The Cave',
-//   1_0: 'The Blacksmith',
-//   1_1: 'The Town Square',
-//   1_2: 'The Forest',
-//   2_0: 'The Tavern',
-//   2_1: 'Starting Point',
-//   2_2: 'The Market'
-// }
+var locations = {
+  x0_y0: 'The Hill',
+  x0_y1: 'The Camp',
+  x0_y2: 'The Cave',
+  x1_y0: 'The Blacksmith',
+  x1_y1: 'The Town Square',
+  x1_y2: 'The Forest',
+  x2_y0: 'The Tavern',
+  x2_y1: 'Starting Point',
+  x2_x2: 'The Market'
+}
 
-var order = [];
+// note that Town Square is not part of the order
+var order = [[2,1],[1,0],[1,2],[2,0],[2,2],[0,2],[0,1],[0,0]];
+
 
 // populate points
 for (let i = 0; i < cells_num; i++) {
@@ -40,7 +42,7 @@ for (let i = 0; i < cells_num; i++) {
   }
 }
 
-// console.log(points);
+console.log(points);
 
 function draw() {
   background(0);
