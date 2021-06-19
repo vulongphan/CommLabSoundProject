@@ -81,7 +81,6 @@ body {
 .blacksmith {
     z-index: 10;
     opacity: 0;
-    pointer-events: none;
 }
 
 .fade {
