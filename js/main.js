@@ -9,30 +9,33 @@ function setup() {
 var points = [];
 var top_left_x = 100,
   top_left_y = 100;
-var player_x = top_left_x,
-  player_y = top_left_y;
+
 var player_size = 35;
 var cells_num = 3;
 var cell_width = 100,
   step = 100;
+var player_x = top_left_x + 1 * cell_width,
+player_y = top_left_y + 2 * cell_width;
 var point_size = 20;
 var visited = [{ x: player_x, y: player_y }];
 
 // positions of 9 locations
 var locations = {
   x0_y0: 'The Hill',
-  x0_y1: 'The Camp',
-  x0_y2: 'The Cave',
-  x1_y0: 'The Blacksmith',
+  x1_y0: 'The Camp',
+  x2_y0: 'The Cave',
+  x0_y1: 'The Blacksmith',
   x1_y1: 'The Town Square',
-  x1_y2: 'The Forest',
-  x2_y0: 'The Tavern',
-  x2_y1: 'Starting Point',
+  x2_y1: 'The Forest',
+  x0_y2: 'The Tavern',
+  x1_y2: 'Starting Point',
   x2_x2: 'The Market'
 }
 
 // note that Town Square is not part of the order
-var order = [[2,1],[1,0],[1,2],[2,0],[2,2],[0,2],[0,1],[0,0]];
+var order = [[1,2],[0,1],[2,1],[0,2],[2,2],[2,0],[1,0],[0,0]];
+
+var progress = 0; // index of current position in order array
 
 
 // populate points
