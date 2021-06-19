@@ -10,6 +10,9 @@ for (let i = 0; i < 20; i++) {
 
 let dialogueCounter = 0;
 
+// function fadeOut(element) {
+//     element.classList
+// }
 // console.log(sounds);
 
 // universal event listener
@@ -35,5 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     })    
 
-
+    
 });
