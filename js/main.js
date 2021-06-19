@@ -9,6 +9,7 @@ function setup() {
 var points = [];
 var top_left_x = 100,
   top_left_y = 100;
+var text_offset_x = 25, text_offset_y = 45, textbox_width = 75;
 
 var player_size = 35;
 var cells_num = 3;
@@ -17,7 +18,7 @@ var cell_width = 100,
 var player_x = top_left_x + 1 * cell_width,
 player_y = top_left_y + 2 * cell_width;
 var point_size = 20;
-var visited = [{ x: player_x, y: player_y }];
+var visited = [{ x: player_x, y: player_y }]; // array of coordinates of correctly visited locations
 
 // positions of 9 locations
 var locations = {
@@ -29,7 +30,7 @@ var locations = {
   x2_y1: 'The Forest',
   x0_y2: 'The Tavern',
   x1_y2: 'Starting Point',
-  x2_x2: 'The Market'
+  x2_y2: 'The Market'
 }
 
 // note that Town Square is not part of the order
@@ -52,12 +53,23 @@ function draw() {
   for (let i = 0; i < points.length; i++) {
     let x = points[i][0];
     let y = points[i][1];
-    if (visited.some((pos) => pos.x === x && pos.y === y)) {
+    let x_next = top_left_x + cell_width * order[progress][0]; // x value of the next position to be visited in order
+    let y_next = top_left_y + cell_width * order[progress][1]; // y value of the next position to be visited in order
+    let coordinates_att = 'x'+ ((x-top_left_x)/cell_width).toString()+'_'+'y'+((y-top_left_y)/cell_width).toString();
+    let location_name = locations[coordinates_att];
+
+    if (player_x == x_next && player_y == y_next) { // if player reaches the next location in the order to be visited
+      progress += 1; // update progress
+      updateVisitedArray(); // update visited array
+      console.log("Correct location visited!!!!");
+    }
+    if ((visited.some((pos) => pos.x === x && pos.y === y))){ // if this location has been visited in the correct order
       fill("red");
     } else {
       noFill();
       stroke('white');
     }
+    text(location_name, x-text_offset_x, y-text_offset_y, textbox_width);
     ellipse(x, y, point_size, point_size);
   }
   fill("purple");
@@ -78,19 +90,15 @@ function control() {
 
   left_arrow.addEventListener("click", () => {
     if (player_x > top_left_x) player_x -= step;
-    updateVisitedArray();
   });
   right_arrow.addEventListener("click", () => {
     if (player_x < top_left_x + cell_width * (cells_num - 1)) player_x += step;
-    updateVisitedArray();
   });
   up_arrow.addEventListener("click", () => {
     if (player_y > top_left_y) player_y -= step;
-    updateVisitedArray();
   });
   down_arrow.addEventListener("click", () => {
     if (player_y < top_left_y + cell_width * (cells_num - 1)) player_y += step;
-    updateVisitedArray();
   });
 }
 
