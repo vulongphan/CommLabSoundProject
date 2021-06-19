@@ -15,11 +15,15 @@ body {
     position: fixed;
     z-index: 90;
     filter: invert(1);
+    opacity: 0;
+}
+
+.controls div {
+    cursor: pointer;
 }
 
 .controls img {
     width: 4em;
-    cursor: pointer;
 }
 
 .controls .left {
@@ -76,11 +80,17 @@ body {
 
 .intro {
     z-index: 100;
+    /* pointer-events: none; */
 }
 
 .blacksmith {
     z-index: 10;
     opacity: 0;
+}
+
+#canvas {
+    opacity: 0;
+    
 }
 
 .fade {
@@ -90,3 +100,4 @@ body {
 .reveal {
     opacity: 1;
 }
+

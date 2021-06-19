@@ -89,18 +89,48 @@ function control() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let intro = document.querySelector(".intro");
-  let bsmith = document.querySelector(".blacksmith");
-  intro.addEventListener("click", () => {
-    intro.classList.add("fade");
-    setTimeout(() => {
-      intro.remove();
-    }, 1000);
-    setTimeout(() => {
-      bsmith.classList.add("reveal");
-    }, 1000);
-  });
+let dialogues = [];
 
-  control();
+for (let i = 0; i < 20; i++) {
+    let audio = {
+        file: new Audio("dialogues/r"+1+".m4a"),
+        played: false
+    };
+    dialogues.push(audio);
+}
+
+let dialogueCounter = 0;
+
+// console.log(sounds);
+
+// universal event listener
+document.addEventListener('DOMContentLoaded', () => {
+    let intro = document.querySelector(".intro");
+    let bsmith = document.querySelector('.blacksmith');
+    let controls = document.querySelector(".controls");
+
+    intro.addEventListener('click', () => {
+        intro.classList.add("fade");
+        setTimeout(() => {
+            intro.remove();
+        }, 1000);
+        setTimeout(() => {
+            bsmith.classList.add("reveal");
+            if (!dialogues[dialogueCounter].played) {
+                dialogues[dialogueCounter].file.play();
+                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                    controls.classList.add("reveal");
+                    dialogues[dialogueCounter].played = true;
+                    let canvas = document.getElementById("canvas");
+                    // canvas.classList.add("reveal");
+                    canvas.style.opacity = 1;
+                    
+                })
+            }
+        }, 1000);
+    })    
+
+    control();
+
+
 });
