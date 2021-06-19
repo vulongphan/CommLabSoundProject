@@ -9,6 +9,21 @@ body {
     background-color: black;
 }
 
+.dialogue {
+    position: fixed;
+    z-index: 100;
+}
+
+.dialogue p {
+    width: 100%;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1em 0.4em;
+    border: 1px solid white;
+    color: white;
+}
+
 .controls {
     width: 100%;
     height: 100vh;

@@ -90,6 +90,9 @@ function control() {
 }
 
 let dialogues = [];
+let userDialogues = [
+    
+]
 
 for (let i = 0; i < 20; i++) {
     let audio = {
