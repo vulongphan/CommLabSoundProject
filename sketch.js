@@ -14,12 +14,31 @@ var cell_width = 100,
 var point_size = 20;
 var visited = [{x:player_x, y:player_y}];
 
+
+// positions of 9 locations
+var locations = {
+  0_0: 'The Hill',
+  0_1: 'The Camp',
+  0_2: 'The Cave',
+  1_0: 'The Blacksmith',
+  1_1: 'The Town Square',
+  1_2: 'The Forest',
+  2_0: 'The Tavern',
+  2_1: 'Starting Point',
+  2_2: 'The Market' 
+}
+
+var order = [];
+
+
 // populate points
 for (let i = 0; i < cells_num; i++) {
   for (let j = 0; j < cells_num; j++) {
     points.push([top_left_x + cell_width * i, top_left_y + cell_width * j]);
   }
 }
+
+console.log(points);
 
 function draw() {
   background(220);
