@@ -113,9 +113,15 @@ for (let i = 0; i < 30; i++) {
 }
 
 let bgSounds = {
-    start: new Audio("sounds/2_1.ogg"),
-    blacksmith: new Audio("sounds/1_0.ogg"),
-    forest: new Audio("sounds/1_2.ogg")
+    start: new Audio("sounds/x1_y2.ogg"),
+    blacksmith: new Audio("sounds/x0_y1.ogg"),
+    forest: new Audio("sounds/x2_y1.ogg"),
+    tavern: new Audio("sounds/x0_y2.ogg"),
+    market: new Audio("sounds/x2_y2.ogg"),
+    cave: new Audio("sounds/x2_y0.ogg"),
+    camp: new Audio("sounds/x1_y0.ogg"),
+    hill: new Audio("sounds/x0_y0.ogg"),
+    ts: new Audio("sounds/x1_y1.ogg")
 }
 
 let dialogueCounter = 0;
