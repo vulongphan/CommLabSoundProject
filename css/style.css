@@ -22,10 +22,12 @@ body {
     z-index: 90;
     filter: invert(0.8);
     opacity: 0;
+    pointer-events: none;
 }
 
 .controls div {
     cursor: pointer;
+    pointer-events: all;
 }
 
 .dialogue {
@@ -37,7 +39,7 @@ body {
     transform: translateX(-50%);
     
     width: 50%;
-    z-index: 95;
+    z-index: 85;
     
 }
 
