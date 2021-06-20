@@ -34,10 +34,10 @@ var locations = {
 }
 
 // note that Town Square is not part of the order
-var order = [[1,2],[0,1],[2,1],[0,2],[2,2],[2,0],[1,0],[0,0]];
+var order = [[1,2],[0,1],[2,1],[0,2],[2,2],[2,0],[1,0],[0,0],[99,99]];
 
 
-var progress = 0; // index of current position in order array
+var progress = 6; // index of current position in order array
 
 
 // populate points
@@ -104,7 +104,7 @@ function control() {
 }
 
 let dialogues = [];
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 30; i++) {
     let audio = {
         file: new Audio("dialogues/r"+1+".m4a"),
         played: false
@@ -113,9 +113,15 @@ for (let i = 0; i < 20; i++) {
 }
 
 let bgSounds = {
-    start: new Audio("sounds/2_1.ogg"),
-    blacksmith: new Audio("sounds/1_0.ogg"),
-    forest: new Audio("sounds/1_2.ogg")
+    start: new Audio("sounds/x1_y2.ogg"),
+    blacksmith: new Audio("sounds/x0_y1.ogg"),
+    forest: new Audio("sounds/x2_y1.ogg"),
+    tavern: new Audio("sounds/x0_y2.ogg"),
+    market: new Audio("sounds/x2_y2.ogg"),
+    cave: new Audio("sounds/x2_y0.ogg"),
+    camp: new Audio("sounds/x1_y0.ogg"),
+    hill: new Audio("sounds/x0_y0.ogg"),
+    ts: new Audio("sounds/x1_y1.ogg")
 }
 
 let dialogueCounter = 0;
@@ -149,19 +155,6 @@ function playBgSound() {
         // todo
     }
 }
-
-// function changeDialogue(dialogue) {
-//     console.log("here");
-//     let box = document.querySelector(".dialogue");
-//     box.innerText = dialogue;  
-//     box.classList.add("reveal");
-//     // setTimeout(() => {
-          
-//     // }, 1000);
-//     userDialogueCounter++;
-// }
-
-let gameEnded = false;
 
 function fadeOut(element) {
     element.classList.remove("reveal");
@@ -242,88 +235,297 @@ document.addEventListener('DOMContentLoaded', () => {
             // the first interaction happens outside this "loop"
             
             btn.addEventListener("click", () => {
-                if (!gameEnded) {
-                    let x = player_x / 100 - 1;
-                    let y = player_y / 100 - 1;
-                    // console.log(order[progress]);
-                    if (progress <= 7) {
-                        if (order[progress][0] == x && order[progress][1] == y) {
-                            // 2,1 not here because we already covered the start story before
-                            controls.classList.remove("reveal");
-                            canvas.classList.remove("reveal");
-                            if (x == 0 && y == 0) {
-                                // The Hill
-                                console.log("hill");
-                                
-                            } else if (x == 1 && y == 0) {
-                                // The Camp
-                                console.log("camp");
-                                
-                            } else if (x == 2 && y == 0) {
-                                // The Cave
-                                console.log("cave");
-                                
-                            } else if (x == 0 && y == 1) {
-                                // The BlackSmith
-                                if (!dialogues[dialogueCounter].played) {
-                                    // Stranger 2: Welcome to the Blacksmith, traveller. How can I help you?
-                                    dialogues[dialogueCounter].file.play();
-                                    dialogues[dialogueCounter].file.addEventListener("ended", () => {
-                                        dialogueCounter++;
-                                        // User: Blacksmith, forge me a magical weapon to defeat the forces of darkness.
-                                        ud[udCounter].classList.add("reveal");
-                                        ud[udCounter].addEventListener('click', () => {
-                                            fadeOut(ud[udCounter]);
-                                            udCounter++;
-                                            // Stranger 2: Ah, yeah... I'm actually not the Blacksmith, sorry... Are you okay, dude? You seem beaten up.
-                                            dialogues[dialogueCounter].file.play();
-                                            dialogues[dialogueCounter].file.addEventListener('ended', () => {
-                                                dialogueCounter++;
-                                                // User: User: Direct me to the Blacksmith, at once!
-                                                ud[udCounter].classList.add("reveal");
-                                                ud[udCounter].addEventListener('click', () => {
-                                                    fadeOut(ud[udCounter]);
-                                                    udCounter++;
-                                                    // Stranger: Go north, to the town square, and then turn left.
-                                                    dialogues[dialogueCounter].file.play();
-                                                    dialogues[dialogueCounter].file.addEventListener('ended', () => {
-                                                        // show popup here
-                                                        console.log("Find the forest");
-                                                        controls.classList.add("reveal");
-                                                        canvas.classList.add("reveal");
-                                                        
+                let x = player_x / 100 - 1;
+                let y = player_y / 100 - 1;
+                // console.log(order[progress]);
+                if (progress <= 7) {
+                    if (order[progress][0] == x && order[progress][1] == y) {
+                        // 2,1 not here because we already covered the start story before
+                        controls.classList.remove("reveal");
+                        canvas.classList.remove("reveal");
+                        if (x == 0 && y == 0) {
+                            // The Hill
+                            if (!dialogues[dialogueCounter].played) {
+                                // Crowd (far away): He stole the pig! Find him! Look behind those rocks!
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                    dialogueCounter++;
+                                    // User: Finally... I complete my fate. O Gems, show me the way to save my people!
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // show popup here
+                                        console.log("Story ends here");
+                                        // ending goes here
+
+
+
+
+
+
+                                    })
+                                })
+                            }
+                            // console.log("hill");
+                            
+                        } else if (x == 1 && y == 0) {
+                            // The Camp
+                            if (!dialogues[dialogueCounter].played) {
+                                // Stranger 5: Welcome to Camp Longhorn! Fancy a marshmellow?
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                                    dialogueCounter++;
+                                    // User: I'd rather have the freshest game you've hunted today.
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Stranger 2: Then come by the bonfire. We're roasting the biggest wild mini pig ever seen in this forest.
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: So, a regular pig?
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // Narrator/Spirit: The prophecies say the last gem shall be earned by a test of fire. This mini pig is too magnificent to be just a coincidence...
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // User: I'm pretty sure this is a normal pig...
+                                                    ud[udCounter].classList.add("reveal");
+                                                    ud[udCounter].addEventListener('click', () => {
+                                                        fadeOut(ud[udCounter]);
+                                                        udCounter++;
+                                                        // Narrator/Spirit: There is no time, Prince! A storm is approaching. Grab the animal, and run to the hills!
+                                                        dialogues[dialogueCounter].file.play();
+                                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                            dialogueCounter++;
+                                                            // show popup here
+                                                            console.log("Run west to the hills");
+                                                            controls.classList.add("reveal");
+                                                            canvas.classList.add("reveal");
+                                                        })
                                                     })
                                                 })
                                             })
                                         })
                                     })
-                                }
-                                // console.log("bsmith");
-                                
-                            } else if (x == 1 && y == 1) {
-                                // The Town Square
-                                console.log("ts");
-                                
-                            } else if (x == 2 && y == 1) {
-                                // The Forest
-                                console.log("forest");
-                                
-                            } else if (x == 0 && y == 2) {
-                                // The Tavern
-                                console.log("tavern");
-                                
-                            } else if (x == 2 && y == 2) {
-                                // The Market
-                                console.log("market");
-                                
+                                })
                             }
-                        } else {
-                            console.log("not here");
-                            playBgSound();
+                            // console.log("camp");
+                            
+                        } else if (x == 2 && y == 0) {
+                            // The Cave
+                            if (!dialogues[dialogueCounter].played) {
+                                // Miner: Hey, you can't come in here without a hard hat!
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                                    dialogueCounter++;
+                                    // User: How dare you speak like that to a Prince?!
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Miner: Where do you think you're going?
+                                        // Narrator/Spirit: Let's hide here. Keep the gems close to you - the miners can steal them.
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // Run towards cave
+                                            console.log("Find a place to stay");
+                                            controls.classList.add("reveal");
+                                            canvas.classList.add("reveal");
+                                        })
+                                    })
+                                })
+                            }
+                            // console.log("cave");
+                            
+                        } else if (x == 0 && y == 1) {
+                            // The BlackSmith
+                            if (!dialogues[dialogueCounter].played) {
+                                // Stranger 2: Welcome to the Blacksmith, traveller. How can I help you?
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                                    dialogueCounter++;
+                                    // User: Blacksmith, forge me a magical weapon to defeat the forces of darkness.
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Stranger 2: Ah, yeah... I'm actually not the Blacksmith, sorry... Are you okay, dude? You seem beaten up.
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: User: Direct me to the Blacksmith, at once!
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // Stranger: Go north, to the town square, and then turn left.
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // show popup here
+                                                    console.log("Find the forest");
+                                                    controls.classList.add("reveal");
+                                                    canvas.classList.add("reveal");
+                                                    
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            }
+                            // console.log("bsmith");
+                            
+                        } else if (x == 1 && y == 1) {
+                            // The Town Square
+                            
+                            // console.log("ts");
+                            
+                        } else if (x == 2 && y == 1) {
+                            // The Forest
+                            // Blacksmith! I am here to collect my ancient weapon.
+                            ud[udCounter].classList.add("reveal");
+                            ud[udCounter].addEventListener('click', () => {
+                                fadeOut(ud[udCounter]);
+                                udCounter++;
+                                // Crazy old man: I am not the Blacksmith! What even is a Blacksmith?
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                    dialogueCounter++;
+                                    // User: You speak in riddles, Blacksmith. A wise man indeed.
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Crazy old man: And they say I'm crazy. How many times do I need to tell you I'm not the Blacksmith?
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: I come here in search of the gem of my people.
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // Crazy old man: Just take this, and leave.
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // User: User: The First Gem! And it has an inscription: "Happy hour - south west of the town square"
+                                                    ud[udCounter].classList.add("reveal");
+                                                    ud[udCounter].addEventListener('click', () => {
+                                                        fadeOut(ud[udCounter]);
+                                                        udCounter++;
+                                                        // show popup here
+                                                        console.log("Find the tavern");
+                                                        controls.classList.add("reveal");
+                                                        canvas.classList.add("reveal");
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                            // console.log("forest");
+                            
+                        } else if (x == 0 && y == 2) {
+                            // The Tavern
+                            if (!dialogues[dialogueCounter].played) {
+                                // Narrator/Spirit: This doesn't sound like a place for a Prince. But the gems can be hidden in any place...
+                                // Innkeeper: Welcome to The Smelly Ukelele. What can I get you?
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                                    dialogueCounter++;
+                                    // User: I come here to find the Second Magical Gem of my kingdom.
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Stranger 3: This man is already gone. Sit down, I'll buy you a beer.
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: I am the Prince of the Kingdom. I do not partake in such vices.
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // Innkeeper: What do you think we sell at a tavern? Apples?
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // User: Apples! The Second Gem is hidden in an Apple.
+                                                    ud[udCounter].classList.add("reveal");
+                                                    ud[udCounter].addEventListener('click', () => {
+                                                        fadeOut(ud[udCounter]);
+                                                        udCounter++;
+                                                        // show popup here
+                                                        console.log("Find the market");
+                                                        controls.classList.add("reveal");
+                                                        canvas.classList.add("reveal");
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            }
+                            // console.log("tavern");
+                            
+                        } else if (x == 2 && y == 2) {
+                            // The Market
+                            if (!dialogues[dialogueCounter].played) {
+                                //Narrator/Spirit: You are truly cunning, Prince. Only the greatest minds could have solved that clue. Pick an apple.
+                                // Stranger 4: Can you please stop rubbing my apples?
+                                dialogues[dialogueCounter].file.play();
+                                dialogues[dialogueCounter].file.addEventListener("ended", () => {
+                                    dialogueCounter++;
+                                    // User: Have you seen an exceptionally big apple? One that looks like an ancient gem, maybe?
+                                    ud[udCounter].classList.add("reveal");
+                                    ud[udCounter].addEventListener('click', () => {
+                                        fadeOut(ud[udCounter]);
+                                        udCounter++;
+                                        // Stranger 4: This one. It is the most precious apple I have ever picked - and my most valued posession.
+                                        // Narrator/Spirit: Stealing is not the way of the enlightened, but the fate of our kingdom depends on it.
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: Tough luck!
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // Stranger 4: Somebody get him!
+                                                // Narrator/Spirit: Run north, as far as you can!
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // show popup here
+                                                    console.log("Run North to the Cave");
+                                                    controls.classList.add("reveal");
+                                                    canvas.classList.add("reveal");
+                                                    
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            }
+                            // console.log("market");
+                            
                         }
                     } else {
-                        console.log("story over");
+                        console.log("not here");
+                        playBgSound();
                     }
+                } else {
+                        
                 }
             })
         })
