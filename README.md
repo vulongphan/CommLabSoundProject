@@ -1,2 +1,6 @@
-# CommLabSoundProject
-A Comm Lab project using sounds 
+# The Crown in his Head
+**Project Description**
+The Crown in his Head is an interactive sound piece, in which the user assumes the role of the prince of a kingdom in ruin, who finds himself in search of three magical gems in a village. Deliberately, the piece never clarifies if the kingdom, and the role of prince, are indeed real. The users have to interact with the piece to progress through the different parts of the story, which is implemented in the form of a questline that motivates the user to move through the different spaces in the fictional village. Although the questline serves as a predefined path for the user to eventualy explore all the areas of the village, the user is also able to explore and freely roam through the spaces. The experience ends once the user has collected the three gems through the questline.
+
+**Process**
+We started by defining the elements that would turn an exclusively auditive experience into a spatial one. We settled on two types: graphical elements like a map and the ability to move through clicking on the arrows, and auditive elements such as soundscapes in order to delimit different spaces in the experience. Then, we decided to keep two modes of interaction: we built a storyline that links the different spaces together with characters, but we still enabled free movement for the user to explore the different soundscapes. 
