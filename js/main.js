@@ -106,33 +106,13 @@ function control() {
 
 // +4 new dialogues
 let dialogues = [];
-for (let i = 1; i <= 23; i++) {
+for (let i = 1; i <= 27; i++) {
     let audio = {
         file: new Audio("dialogues/r"+ i +".ogg"),
         played: false
     };
     dialogues.push(audio);
 }
-dialogues[23] = {
-    file: new Audio("dialogues/r1.m4a"),
-    played: false
-};
-dialogues[24] = {
-    file: new Audio("dialogues/r1.m4a"),
-    played: false
-};
-dialogues[25] = {
-    file: new Audio("dialogues/r1.m4a"),
-    played: false
-};
-dialogues[26] = {
-    file: new Audio("dialogues/r1.m4a"),
-    played: false
-};
-dialogues[27] = {
-    file: new Audio("dialogues/r1.m4a"),
-    played: false
-};
 
 let bgSounds = {
     start: new Audio("sounds/x1_y2.ogg"),
