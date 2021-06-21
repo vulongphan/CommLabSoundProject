@@ -65,12 +65,13 @@ function draw() {
       console.log("Correct location visited!!!!");
     }
     if ((visited.some((pos) => pos.x === x && pos.y === y))){ // if this location has been visited in the correct order
-      fill("red");
+      fill("white");
+      text(location_name, x-text_offset_x, y-text_offset_y, textbox_width);
     } else {
       noFill();
       stroke('white');
     }
-    text(location_name, x-text_offset_x, y-text_offset_y, textbox_width);
+    
     ellipse(x, y, point_size, point_size);
   }
   fill("purple");
