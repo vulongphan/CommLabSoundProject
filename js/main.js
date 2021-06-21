@@ -37,7 +37,7 @@ var locations = {
 var order = [[1,2],[0,1],[2,1],[0,2],[2,2],[2,0],[1,0],[0,0],[99,99]];
 
 
-var progress = 6; // index of current position in order array
+var progress = 0; // index of current position in order array
 
 
 // populate points
@@ -104,9 +104,9 @@ function control() {
 }
 
 let dialogues = [];
-for (let i = 0; i < 30; i++) {
+for (let i = 1; i <= 23; i++) {
     let audio = {
-        file: new Audio("dialogues/r"+1+".m4a"),
+        file: new Audio("dialogues/r"+ i +".ogg"),
         played: false
     };
     dialogues.push(audio);
@@ -131,28 +131,49 @@ function playBgSound() {
     let y = (player_y - top_left_y) / cell_width;
     if (x == 0 && y == 0) {
         // todo
-        
+        bgSounds.hill.play();
+        bgSounds.hill.loop = true;
     } else if (x == 0 && y == 1) {
         // todo
         bgSounds.blacksmith.play();
+        bgSounds.blacksmith.loop = true;
     } else if (x == 0 && y == 2) {
         // todo
+        bgSounds.tavern.play();
+        bgSounds.tavern.loop = true;
     } else if (x == 1 && y == 0) {
         // todo
-        
+        bgSounds.camp.play();
+        bgSounds.camp.loop = true;
     } else if (x == 1 && y == 1) {
         // todo
+        bgSounds.ts.play();
+        bgSounds.ts.loop = true;
     } else if (x == 1 && y == 2) {
         // todo
         bgSounds.start.play();
+        bgSounds.start.loop = true;
     } else if (x == 2 && y == 0) {
         // todo
+        bgSounds.cave.play();
+        bgSounds.cave.loop = true;
     } else if (x == 2 && y == 1) {
         // todo
         bgSounds.forest.play();
-        
+        bgSounds.forest.loop = true;
     } else if (x == 2 && y == 2) {
         // todo
+        bgSounds.market.play();
+        bgSounds.market.loop = true;
+    }
+}
+
+function stopBgSound() {
+    for (let key in bgSounds) {
+        if (!bgSounds[key].paused) {
+            bgSounds[key].pause();
+            bgSounds[key].currentTime = 0;
+        }
     }
 }
 
@@ -186,6 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // playing the first dialogue
             // Narrator/Spirit: The Capital...broom poking someone)
             dialogues[dialogueCounter].file.play();
+            
+            // NOTE: needs rework
+            playBgSound();
             dialogues[dialogueCounter].file.addEventListener("ended", () => {
                 dialogueCounter++;
                 // User: Please, sir, you have to help me-- our kingdom is in danger. I need to collect the three ancient gemstones!
@@ -235,11 +259,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // the first interaction happens outside this "loop"
             
             btn.addEventListener("click", () => {
+                stopBgSound();
+                playBgSound();
                 let x = player_x / 100 - 1;
                 let y = player_y / 100 - 1;
                 // console.log(order[progress]);
                 if (progress <= 7) {
                     if (order[progress][0] == x && order[progress][1] == y) {
+                        playBgSound();
                         // 2,1 not here because we already covered the start story before
                         controls.classList.remove("reveal");
                         canvas.classList.remove("reveal");
@@ -520,10 +547,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             // console.log("market");
                             
                         }
-                    } else {
-                        console.log("not here");
-                        playBgSound();
-                    }
+                    } 
+                    // else {
+                    //     console.log("not here");
+                    //     playBgSound();
+                    // }
                 } else {
                         
                 }
