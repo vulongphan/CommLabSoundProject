@@ -103,6 +103,7 @@ function control() {
   });
 }
 
+// +4 new dialogues
 let dialogues = [];
 for (let i = 1; i <= 23; i++) {
     let audio = {
@@ -111,6 +112,26 @@ for (let i = 1; i <= 23; i++) {
     };
     dialogues.push(audio);
 }
+dialogues[23] = {
+    file: new Audio("dialogues/r1.m4a"),
+    played: false
+};
+dialogues[24] = {
+    file: new Audio("dialogues/r1.m4a"),
+    played: false
+};
+dialogues[25] = {
+    file: new Audio("dialogues/r1.m4a"),
+    played: false
+};
+dialogues[26] = {
+    file: new Audio("dialogues/r1.m4a"),
+    played: false
+};
+dialogues[27] = {
+    file: new Audio("dialogues/r1.m4a"),
+    played: false
+};
 
 let bgSounds = {
     start: new Audio("sounds/x1_y2.ogg"),
@@ -282,10 +303,64 @@ document.addEventListener('DOMContentLoaded', () => {
                                     ud[udCounter].addEventListener('click', () => {
                                         fadeOut(ud[udCounter]);
                                         udCounter++;
-                                        // show popup here
-                                        console.log("Story ends here");
-                                        // ending goes here
+                                        // (paper rumbling sounds)
+                                        dialogues[dialogueCounter].file.play();
+                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                            dialogueCounter++;
+                                            // User: huh?
+                                            ud[udCounter].classList.add("reveal");
+                                            ud[udCounter].addEventListener('click', () => {
+                                                fadeOut(ud[udCounter]);
+                                                udCounter++;
+                                                // (paper rumbling sounds)
+                                                dialogues[dialogueCounter].file.play();
+                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                    dialogueCounter++;
+                                                    // User: What do I do now?
+                                                    ud[udCounter].classList.add("reveal");
+                                                    ud[udCounter].addEventListener('click', () => {
+                                                        fadeOut(ud[udCounter]);
+                                                        udCounter++;
+                                                        // (paper rumbling sounds)
+                                                        dialogues[dialogueCounter].file.play();
+                                                        dialogues[dialogueCounter].file.addEventListener('ended', () => {
+                                                            dialogueCounter++;
+                                                            // User:  Are you there?
+                                                            ud[udCounter].classList.add("reveal");
+                                                            ud[udCounter].addEventListener('click', () => {
+                                                                fadeOut(ud[udCounter]);
+                                                                udCounter++;
+                                                                dialogues[dialogueCounter].file.play();
+                                                                // NOTE: the user may be left thinking if it has ended or not
+                                                                dialogues[dialogueCounter].file.addEventListener('ended', () => {
 
+                                                                    // the end
+                                                                    document.querySelector(".credits").classList.add("reveal");
+                                                                    console.log("the end");
+                                                                })
+
+
+
+
+
+
+                                                            })
+                                                        })
+
+
+
+
+
+                                                    })
+                                                })
+
+
+
+
+
+
+                                            })
+                                        })
 
 
 
