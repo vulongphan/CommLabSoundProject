@@ -74,7 +74,7 @@ function draw() {
     
     ellipse(x, y, point_size, point_size);
   }
-  fill("purple");
+  fill("grey");
   ellipse(player_x, player_y, player_size);
 }
 
